@@ -1,10 +1,12 @@
 package com.hecklerreifcollab.testspringdataneo4j.comicissue;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 @RequestMapping("/comicissues")
 public class ComicIssueController {
     private final ComicIssueRepo repo;
@@ -14,6 +16,13 @@ public class ComicIssueController {
     }
 
     @GetMapping
+    String getIssuesPage(Model model) {
+        model.addAttribute("ComicIssues", repo.findAll());
+        return "comicissues";
+    }
+
+    @GetMapping("/json")
+    @ResponseBody
     Iterable<ComicIssue> getAllComicIssues() {
         return repo.findAll();
     }
