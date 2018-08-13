@@ -9,8 +9,8 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @NodeEntity
 public class Character {
     @Id
@@ -20,4 +20,5 @@ public class Character {
     private Long id;
     @NonNull
     private String name, description, resourceURI, thumbnail;
+
 }

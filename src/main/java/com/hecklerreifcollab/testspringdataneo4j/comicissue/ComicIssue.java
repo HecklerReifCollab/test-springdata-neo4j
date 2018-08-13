@@ -14,6 +14,9 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.hecklerreifcollab.testspringdataneo4j.character.Character;
 
 @Data
 @NoArgsConstructor
@@ -33,7 +36,7 @@ public class ComicIssue {
     private String name, thumbnail, resourceURI;
 
     @Relationship(type = "INCLUDES")
-    private Iterable<Character> characters = new ArrayList<>();
+    private List<Character> characters = new ArrayList<>();
 
     @Relationship(type = "CREATED_BY")
     private Iterable<Creator> creators = new ArrayList<>();
@@ -46,4 +49,8 @@ public class ComicIssue {
 
     @Relationship(type = "MADE_OF")
     private Iterable<Story> stories = new ArrayList<>();
+
+    public List<Character> getCharacters() {
+        return characters;
+    }
 }
