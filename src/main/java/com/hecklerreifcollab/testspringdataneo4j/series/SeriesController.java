@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SeriesController {
     private final SeriesRepo repo;
 
-
     public SeriesController(SeriesRepo repo) {
         this.repo = repo;
     }
