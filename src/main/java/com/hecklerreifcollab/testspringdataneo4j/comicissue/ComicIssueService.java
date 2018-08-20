@@ -58,7 +58,6 @@ public class ComicIssueService {
     @Transactional(readOnly = true)
     public Iterable<ComicIssue> findByNameLike(String name) {
         return issueRepo.findByNameLike(name);
-        //return issueRepo.findAllByNameLike(name);
     }
 
     @Transactional(readOnly = true)

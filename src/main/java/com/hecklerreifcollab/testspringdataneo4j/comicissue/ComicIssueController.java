@@ -37,7 +37,7 @@ public class ComicIssueController {
         return "comicissues";
     }
 
-    @GetMapping("/graphwow")
+    @GetMapping("/buildgraph")
     @ResponseBody
     public Map<String, Object> getIssuesGraph(@RequestParam(value = "limit",required = false) Integer limit) {
         return issueService.graph(limit == null ? 100 : limit);
