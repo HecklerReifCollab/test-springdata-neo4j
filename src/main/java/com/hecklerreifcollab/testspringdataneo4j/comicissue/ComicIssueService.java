@@ -1,6 +1,10 @@
 package com.hecklerreifcollab.testspringdataneo4j.comicissue;
 
 import com.hecklerreifcollab.testspringdataneo4j.character.Character;
+import com.hecklerreifcollab.testspringdataneo4j.creator.Creator;
+import com.hecklerreifcollab.testspringdataneo4j.event.Event;
+import com.hecklerreifcollab.testspringdataneo4j.series.Series;
+import com.hecklerreifcollab.testspringdataneo4j.story.Story;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +33,46 @@ public class ComicIssueService {
                 int source = nodes.indexOf(comicChar);
                 if (source == -1) {
                     nodes.add(comicChar);
+                    source = i++;
+                }
+
+                rels.add(map("source", source, "target", target));
+            }
+            for (Creator creator : issue.getCreators()) {
+                Map<String, Object> comicCre = map("name", creator.getName(), "label", "creator");
+                int source = nodes.indexOf(comicCre);
+                if (source == -1) {
+                    nodes.add(comicCre);
+                    source = i++;
+                }
+
+                rels.add(map("source", source, "target", target));
+            }
+            for (Series series : issue.getSeries()) {
+                Map<String, Object> comicSeries = map("name", series.getName(), "label", "series");
+                int source = nodes.indexOf(comicSeries);
+                if (source == -1) {
+                    nodes.add(comicSeries);
+                    source = i++;
+                }
+
+                rels.add(map("source", source, "target", target));
+            }
+            for (Story story : issue.getStories()) {
+                Map<String, Object> comicStor = map("name", story.getName(), "label", "story");
+                int source = nodes.indexOf(comicStor);
+                if (source == -1) {
+                    nodes.add(comicStor);
+                    source = i++;
+                }
+
+                rels.add(map("source", source, "target", target));
+            }
+            for (Event event : issue.getEvents()) {
+                Map<String, Object> comicEvent = map("name", event.getName(), "label", "event");
+                int source = nodes.indexOf(comicEvent);
+                if (source == -1) {
+                    nodes.add(comicEvent);
                     source = i++;
                 }
 

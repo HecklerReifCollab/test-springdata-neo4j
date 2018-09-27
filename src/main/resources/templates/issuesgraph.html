@@ -8,7 +8,7 @@
             .node.character { fill: #BBB; }
             .link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
         </style>
-        <title>Neo4j Movies</title>
+        <title>Neo4j/Marvel Comics</title>
     </head>
 
     <body>
@@ -65,14 +65,34 @@
             </div>
             <div class="col-md-7">
                 <div class="panel panel-default">
-                    <div class="panel-heading" id="charnames">Details</div>
+                    <div class="panel-heading" id="comicDetails">Details</div>
                     <div class="row">
                         <div class="col-sm-4 col-md-4">
-                            <img src="" class="well" id="poster"/>
+                            <img src="" class="well" id="poster" style="height: 300px; width: auto"/>
                         </div>
                         <div class="col-md-8 col-sm-8">
                             <h4>Characters</h4>
                             <ul id="characters">
+                            </ul>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <h4>Creators</h4>
+                            <ul id="creators">
+                            </ul>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <h4>Series</h4>
+                            <ul id="series">
+                            </ul>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <h4>Stories</h4>
+                            <ul id="stories">
+                            </ul>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <h4>Events</h4>
+                            <ul id="events">
                             </ul>
                         </div>
                     </div>
@@ -88,12 +108,36 @@
                             if (!data) return;
                             var issue = data;
                             $("#name").text(issue.name);
-                            // $("#poster").attr("src","http://neo4j-contrib.github.io/developer-resources/language-guides/assets/posters/"+encodeURIComponent(movie.title)+".jpg");
-                            var $list = $("#characters").empty();
+                            $("#poster").attr("src",issue.thumbnail);
+                            var $charList = $("#characters").empty();
                             issue.characters.forEach(function (issueChar) {
                                 var person = issueChar.name;
                                 var thumbnail = issueChar.thumbnail;
-                                $list.append($("<li>" + person + " " + thumbnail + "</li>"));
+                                $charList.append($("<li><img src='" + thumbnail + "' id='comicChar' style='height: 50px; width: auto'/>  " + person + "</li>"));
+                            });
+                            var $creList = $("#creators").empty();
+                            issue.creators.forEach(function (issueCre) {
+                                var person = issueCre.name;
+                                $creList.append($("<li>" + person + "</li>"));
+                            });
+                            var $seriesList = $("#series").empty();
+                            issue.series.forEach(function (issueSeries) {
+                                var series = issueSeries.name;
+                                var thumbnail = issueSeries.thumbnail;
+                                var rating = issueSeries.rating;
+                                var startYear = issueSeries.startYear;
+                                var endYear = issueSeries.endYear;
+                                $seriesList.append($("<li><img src='" + thumbnail + "' id='comicSer' style='height: 50px; width: auto'/>  " + series + " " + rating + " " + startYear + "-" + endYear + "</li>"));
+                            });
+                            var $storyList = $("#stories").empty();
+                            issue.stories.forEach(function (issueStor) {
+                                var story = issueStor.name;
+                                $storyList.append($("<li>" + story + "</li>"));
+                            });
+                            var $eventList = $("#events").empty();
+                            issue.events.forEach(function (issueEvent) {
+                                var event = issueEvent.name;
+                                $eventList.append($("<li>" + event + "</li>"));
                             });
                         }, "json");
                     return false;

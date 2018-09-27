@@ -39,18 +39,26 @@ public class ComicIssue {
     private List<Character> characters = new ArrayList<>();
 
     @Relationship(type = "CREATED_BY")
-    private Iterable<Creator> creators = new ArrayList<>();
+    private List<Creator> creators = new ArrayList<>();
 
     @Relationship(type = "PART_OF")
-    private Iterable<Event> events = new ArrayList<>();
+    private List<Event> events = new ArrayList<>();
 
     @Relationship(type = "BELONGS_TO")
-    private Iterable<Series> series = new ArrayList<>();
+    private List<Series> series = new ArrayList<>();
 
     @Relationship(type = "MADE_OF")
-    private Iterable<Story> stories = new ArrayList<>();
+    private List<Story> stories = new ArrayList<>();
 
     public List<Character> getCharacters() {
         return characters;
     }
+
+    public List<Creator> getCreators() { return creators; }
+
+    public List<Event> getEvents() { return events; }
+
+    public List<Series> getSeries() { return series; }
+
+    public List<Story> getStories() { return stories; }
 }
