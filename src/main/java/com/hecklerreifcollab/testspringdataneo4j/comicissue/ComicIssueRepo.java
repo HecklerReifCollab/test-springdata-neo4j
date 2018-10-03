@@ -12,6 +12,6 @@ public interface ComicIssueRepo extends Neo4jRepository<ComicIssue, Long> {
 
     Iterable<ComicIssue> findByNameLike(@Param("name") String name);
 
-    @Query("MATCH (c:Character)<-[r:INCLUDES]-(i:ComicIssue) RETURN c,r,i LIMIT {limit}")
+    @Query("MATCH (i:ComicIssue)-[r]-(n) RETURN i,r,n LIMIT {limit}")
     Collection<ComicIssue> graph(@Param("limit") int limit);
 }

@@ -4,8 +4,12 @@
         <link rel="stylesheet" href="http://neo4j-contrib.github.io/developer-resources/language-guides/assets/css/main.css">
         <style type="text/css">
             .node { stroke: #222; stroke-width: 1.5px; }
-            .node.issue { fill: #888; }
-            .node.character { fill: #BBB; }
+            .node.issue { fill: #ff0000; }
+            .node.character { fill: #0000ff; }
+            .node.creator { fill: #009933; }
+            .node.series { fill: #ffff00; }
+            .node.story { fill: #9900cc; }
+            .node.event { fill: #a5abb6; }
             .link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
         </style>
         <title>Neo4j/Marvel Comics</title>
@@ -15,8 +19,6 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
 
-        <div id="graph">
-        </div>
         <div role="navigation" class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="row">
@@ -98,6 +100,13 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="visualGraph">Graph</div>
+                        <div id="graph" style="width: 100%; height: auto"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script type="text/javascript">
@@ -125,9 +134,7 @@
                                 var series = issueSeries.name;
                                 var thumbnail = issueSeries.thumbnail;
                                 var rating = issueSeries.rating;
-                                var startYear = issueSeries.startYear;
-                                var endYear = issueSeries.endYear;
-                                $seriesList.append($("<li><img src='" + thumbnail + "' id='comicSer' style='height: 50px; width: auto'/>  " + series + " " + rating + " " + startYear + "-" + endYear + "</li>"));
+                                $seriesList.append($("<li><img src='" + thumbnail + "' id='comicSer' style='height: 50px; width: auto'/>  " + series + " " + rating + "</li>"));
                             });
                             var $storyList = $("#stories").empty();
                             issue.stories.forEach(function (issueStor) {
