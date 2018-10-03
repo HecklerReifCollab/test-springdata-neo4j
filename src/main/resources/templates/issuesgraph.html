@@ -133,8 +133,7 @@
                             issue.series.forEach(function (issueSeries) {
                                 var series = issueSeries.name;
                                 var thumbnail = issueSeries.thumbnail;
-                                var rating = issueSeries.rating;
-                                $seriesList.append($("<li><img src='" + thumbnail + "' id='comicSer' style='height: 50px; width: auto'/>  " + series + " " + rating + "</li>"));
+                                $seriesList.append($("<li><img src='" + thumbnail + "' id='comicSer' style='height: 50px; width: auto'/>  " + series + " " + "</li>"));
                             });
                             var $storyList = $("#stories").empty();
                             issue.stories.forEach(function (issueStor) {
